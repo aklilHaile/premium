@@ -1,0 +1,19 @@
+                                                       CHapter 1 
+                                                      What Is Git ?  
+
+       Git In My Point Of View is a tool that help and enable developer to have different end Point that allow him 
+       control version of his work, I is obvious that controling version is essentia to modify existing program.
+            So to create Local Repsitories and start to track files
+       We first have to be sure that we are in the right Directory to initialize Git , Then
+         1 Initialize git Using "Git init"!
+         2 Add file we want to track change using "git add Filename" to staging area, where file ready to be commited
+           are placed.
+         3 finally commit using "git commit -m 'message'"  
+           The message is actually conventionally written in present tense to explictly tell what change have been made.
+
+        
+
+
+
+
+
