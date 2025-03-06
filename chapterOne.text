@@ -10,8 +10,8 @@
            are placed.
          3 finally commit using "git commit -m 'message'"  
            The message is actually conventionally written in present tense to explictly tell what change have been made.
-
         
+
 
 
 
