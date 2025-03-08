@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insurance Premium Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: inline-block;
+            width: 120px;
+        }
+        input {
+            padding: 8px;
+            width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f5f5f5;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h2>Insurance Premium Calculator</h2>
+    
+    <div class="input-group">
+        <label for="sum">Sum Insured:</label>
+        <input type="number" id="sum" step="1000" placeholder="Enter amount">
+    </div>
+    
+    <div class="input-group">
+        <label for="rate">Rate (%):</label>
+        <input type="number" id="rate" step="0.01" placeholder="Enter rate">
+    </div>
+    
+    <div class="input-group">
+        <label for="premium">Premium:</label>
+        <input type="number" id="premium" step="0.01" placeholder="Calculated or enter manually">
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Sum Insured</th>
+                <th>Rate (%)</th>
+                <th>Premium</th>
+            </tr>
+        </thead>
+        <tbody id="results">
+            <!-- Results will appear here -->
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sumInput = document.getElementById('sum');
+            const rateInput = document.getElementById('rate');
+            const premiumInput = document.getElementById('premium');
+            const resultsBody = document.getElementById('results');
+
+            function calculatePremium() {
+                const sum = parseFloat(sumInput.value) || 0;
+                const rate = parseFloat(rateInput.value) || 0;
+                const calculatedPremium = sum * (rate / 100);
+                
+                // Only update premium if it's not currently focused
+                if (document.activeElement !== premiumInput) {
+                    premiumInput.value = calculatedPremium.toFixed(2);
+                }
+                
+                updateTable();
+            }
+
+            function updateTable() {
+                // Clear existing rows
+                resultsBody.innerHTML = '';
+                
+                // Create new row with current values
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${sumInput.value ? parseFloat(sumInput.value).toLocaleString() : '-'}</td>
+                    <td>${rateInput.value || '-'}</td>
+                    <td>${premiumInput.value ? parseFloat(premiumInput.value).toFixed(2) : '-'}</td>
+                `;
+                resultsBody.appendChild(row);
+            }
+
+            // Automatic calculations
+            sumInput.addEventListener('input', calculatePremium);
+            rateInput.addEventListener('input', calculatePremium);
+            
+            // Manual premium input handling
+            premiumInput.addEventListener('input', updateTable);
+        });
+    </script>
+</body>
+</html>
